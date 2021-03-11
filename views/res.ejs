@@ -8,6 +8,10 @@
     <body>
 
         <p> vous devez payer <%= prix %> </p>
+        <form action="/payez" method="post">
+            <input type="text" id ="00" name="cb" placeholder="votre carte bleue ici">
+            <button type="submit" name="prix" id="submit" value="<%= prix %>">payez </button>
+        </form>
 
     </body>
 </html> 

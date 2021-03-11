@@ -4,7 +4,7 @@ var app = require('express')();
 
 var ejs = require('ejs');
 
-var mango = require('mangopay');
+var api = require("request");
 
 var sSoap = 
 {
@@ -47,6 +47,7 @@ app.listen( port , function()
 );
 
 
+
 app.use(require("express").urlencoded());
 
 app.set("view engine", "ejs");
@@ -67,4 +68,61 @@ app.post("/result", function(req, res)
             res.render("res", {prix: result.prixLivraison});
         });
     });
+});
+
+
+
+app.post("/payez", function(req, res)
+{
+    api.post(`http://localhost:${port}/paiment`, 
+    {
+        form: 
+        {
+            carteBleue : req.body.cb,
+            prix : req.body.prix
+        }
+    }, function(error, response, body)
+    {
+        if (error)
+        {
+            console.log(error);
+            res.send(error);
+        }
+        
+        if (response.statusCode == 200)
+        {
+            paimentacc = JSON.parse(body);
+            res.render("payment_accepte", {message : paimentacc.message});
+            console.log(paimentacc);
+        }
+        else if ( response.statusCode == 400)
+        {
+            res.send("ERROR 400");
+            console.log(body);
+        }
+    }
+    );
+});
+
+// api rest
+app.post("/paiment", function(req, res)
+{
+    if (req.body.carteBleue)
+    {
+        res.status(200).send(
+            {
+                status : 200,
+                message : "vous avez payé " + req.body.prix + "€"
+            }
+        );
+    }
+    else
+    {
+        res.status(400).send(
+            {
+                status : 400,
+                message : "la carte bleue n'existe pas ou est invalide"
+            }
+        );
+    }
 });
