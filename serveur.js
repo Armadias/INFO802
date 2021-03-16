@@ -55,14 +55,17 @@ app.set("view engine", "ejs");
 app.get('/',function(req,res){
     //res.sendFile(__dirname + "/aaVue/Client.html");
     res.render("client");
+    console.log("client rendered!");
 });
 
 app.post("/result", function(req, res)
 {
     var url = 'http://localhost:3000/wsdl?wsdl';
+    console.log(url);
     var args = { poids: req.body.distance, distance: req.body.quantites };
 
     soap.createClient(url, function (err, client) {
+        console.log("Client:" + client);
         client.calculCoutLivraison(args, function (err, result, raw) {
             console.log(result);
             res.render("res", {prix: result.prixLivraison});
