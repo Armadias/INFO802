@@ -60,7 +60,7 @@ app.get('/',function(req,res){
 
 app.post("/result", function(req, res)
 {
-    var url = 'http://localhost:3000/wsdl?wsdl';
+    var url = 'https://info802follietmartin.herokuapp.com/wsdl?wsdl';
     console.log(url);
     var args = { poids: req.body.distance, distance: req.body.quantites };
 
