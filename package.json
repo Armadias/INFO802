@@ -1,17 +1,15 @@
 {
   "name": "info802",
   "version": "1.0.0",
-  "description": "le TP d'info 802 pour SOAP REST ET GRAPHQL",
+  "description": "le service SOAP pour le tp d'info 802",
   "main": "serveur.js",
   "scripts": {
-    "start" : "node serveur.js"
+    "start": "node serviceSoap.js"
   },
   "author": "Martin",
   "license": "UNLICENSED",
   "dependencies": {
-    "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "request": "^2.88.2",
     "soap": "^0.36.0"
   }
 }
