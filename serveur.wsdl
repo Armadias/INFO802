@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <wsdl:definitions 
-targetNamespace="https://info802follietmartin.herokuapp.com/wsdl" 
+targetNamespace="https://soapserviceinfo802mf.herokuapp.com/wsdl" 
 xmlns:apachesoap="http://xml.apache.org/xml-soap" 
-xmlns:impl="https://info802follietmartin.herokuapp.com/wsdl" 
-xmlns:intf="https://info802follietmartin.herokuapp.com/wsdl" 
+xmlns:impl="https://soapserviceinfo802mf.herokuapp.com/wsdl" 
+xmlns:intf="https://soapserviceinfo802mf.herokuapp.com/wsdl" 
 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
 xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <!--WSDL created by Apache Axis version: 1.4
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
-  <schema elementFormDefault="qualified" targetNamespace="https://info802follietmartin.herokuapp.com/wsdl" xmlns="http://www.w3.org/2001/XMLSchema">
+  <schema elementFormDefault="qualified" targetNamespace="https://soapserviceinfo802mf.herokuapp.com/wsdl" xmlns="http://www.w3.org/2001/XMLSchema">
    <element name="calculCoutLivraison">
     <complexType>
      <sequence>
@@ -89,7 +89,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdl:port binding="impl:prixLivraisonSoapBinding" name="prixLivraison">
 
-         <wsdlsoap:address location="https://info802follietmartin.herokuapp.com/wsdl"/>
+         <wsdlsoap:address location="https://soapserviceinfo802mf.herokuapp.com/wsdl"/>
 
       </wsdl:port>
 
