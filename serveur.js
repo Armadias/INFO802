@@ -6,7 +6,7 @@ var ejs = require('ejs');
 
 var api = require("request");
 
-/*var sSoap = 
+var sSoap = 
 {
     servicesCoutLivraison: 
     {
@@ -44,7 +44,7 @@ app.listen( port , function()
         console.log(`Serveur lancé sur le port ${port}`);
     });
 }
-);*/
+);
 
 
 
