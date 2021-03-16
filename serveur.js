@@ -30,7 +30,7 @@ app.get('/',function(req,res){
 app.post("/result", function(req, res)
 {
     var url = 'https://soapserviceinfo802mf.herokuapp.com/wsdl?wsdl';
-    console.log(url);
+    console.log(`url du service soap appelé: ${url}`);
     var args = { poids: req.body.distance, distance: req.body.quantites };
 
     soap.createClient(url, function (err, client) {
