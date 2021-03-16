@@ -4,7 +4,7 @@
   "description": "le TP d'info 802 pour SOAP REST ET GRAPHQL",
   "main": "serveur.js",
   "scripts": {
-    "test": "soapRun"
+    "start" : "node serveur.js"
   },
   "author": "Martin",
   "license": "UNLICENSED",
