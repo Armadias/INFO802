@@ -6,7 +6,7 @@ var ejs = require('ejs');
 
 var api = require("request");
 
-var sSoap = 
+/*var sSoap = 
 {
     servicesCoutLivraison: 
     {
@@ -44,7 +44,7 @@ app.listen( port , function()
         console.log(`Serveur lancé sur le port ${port}`);
     });
 }
-);
+);*/
 
 
 
@@ -60,7 +60,7 @@ app.get('/',function(req,res){
 
 app.post("/result", function(req, res)
 {
-    var url = 'https://info802follietmartin.herokuapp.com/wsdl?wsdl';
+    var url = 'https://soapserviceinfo802mf.herokuapp.com/wsdl?wsdl';
     console.log(url);
     var args = { poids: req.body.distance, distance: req.body.quantites };
 
