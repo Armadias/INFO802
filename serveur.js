@@ -53,7 +53,8 @@ app.post("/result", function(req, res)
 app.post('/achat', function(req, res)
 {
     console.log("ACHAT APELE");
-    console.log(`req body : ${req.body.price}`);
+    console.log(`req body : ${JSON.stringify(req.body)}`);
+
 
     /*
         if (error) {
