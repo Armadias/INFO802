@@ -54,6 +54,8 @@ app.post('/achat', function(req, res)
 {
     console.log(`req body : ${req.body.price}`)
     console.log(`req body : ${req.body.stripeTokenId}`)
+
+    console.log(req);
     console.log(`res body : ${res}`)
     /*
         if (error) {
