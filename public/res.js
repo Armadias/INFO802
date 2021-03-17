@@ -9,6 +9,7 @@ var stripeHandler = StripeCheckout.configure({
     key: stripePublicKey,
     locale: 'en',
     token: function(token) {
+        console.log(token);
         /*var items = []
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
