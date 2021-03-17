@@ -50,8 +50,28 @@ app.post("/result", function(req, res)
 
 
 
-/*app.post("/payez", function(req,res)
+app.post('/achat', function(error, req, res)
 {
+    console.log(error);
+    console.log(req);
+    console.log(res);
+    /*
+        if (error) {
+          res.status(500).end();
+        } else {
 
+          var prix = req.body.prix;
+    
+          stripe.charges.create({
+            amount: total,
+            source: req.body.stripeTokenId,
+            currency: 'usd'
+          }).then(function() {
+            console.log('Charge Successful')
+            res.json({ message: 'Successfully purchased items' })
+          }).catch(function() {
+            console.log('Charge Fail');
+            res.status(500).end()
+          });
+        }*/
 });
-*/
