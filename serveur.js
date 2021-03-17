@@ -50,11 +50,10 @@ app.post("/result", function(req, res)
 
 
 
-app.post('/achat', function(error, req, res)
+app.post('/achat', function(req, res)
 {
-    console.log(error);
-    //console.log(req);
-    //console.log(res);
+    console.log(`req body : ${req.body}`)
+    console.log(`res body : ${res.body}`)
     /*
         if (error) {
           res.status(500).end();

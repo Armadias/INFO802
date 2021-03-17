@@ -22,7 +22,7 @@ var stripeHandler = StripeCheckout.configure({
             },
             body: JSON.stringify({
                 stripeTokenId: token.id,
-                items: price
+                price: price
             })
         }).then(function(res) {
             return res.json()
