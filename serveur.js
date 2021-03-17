@@ -46,7 +46,7 @@ app.post("/result", function(req, res)
 
 app.post("/payez", function(req, res)
 {
-    api.post(`http://localhost:${port}/paiment`, 
+    api.post(`https://restapimf.herokuapp.com/paiment`, 
     {
         form: 
         {
@@ -76,7 +76,7 @@ app.post("/payez", function(req, res)
     );
 });
 
-// api rest
+/* api rest
 app.post("/paiment", function(req, res)
 {
     if (req.body.carteBleue)
@@ -97,4 +97,4 @@ app.post("/paiment", function(req, res)
             }
         );
     }
-});
+});*/
