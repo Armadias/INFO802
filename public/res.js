@@ -16,7 +16,7 @@ var stripeHandler = StripeCheckout.configure({
 
         console.log(price);
         console.log("TOKENID" + token.id);
-        
+
         fetch('/achat', {
             method: 'POST',
             headers: {
@@ -27,7 +27,9 @@ var stripeHandler = StripeCheckout.configure({
                 stripeTokenId: token.id,
                 price: price
             })
-        })/*.then(function(res) {
+        });
+        
+        /*.then(function(res) {
             return res.json()
         }).then(function(data) {
             alert(data.message)
