@@ -9,7 +9,7 @@ var stripeHandler = StripeCheckout.configure({
     key: stripePublicKey,
     locale: 'en',
     token: function(token) {
-        var items = []
+        /*var items = []
         var cartItemContainer = document.getElementsByClassName('cart-items')[0]
         var cartRows = cartItemContainer.getElementsByClassName('cart-row')
         for (var i = 0; i < cartRows.length; i++) {
@@ -44,16 +44,16 @@ var stripeHandler = StripeCheckout.configure({
             updateCartTotal()
         }).catch(function(error) {
             console.error(error)
-        })
+        })*/
     }
 });
 
 function purchaseClicked() {
     var priceElement = document.getElementsByClassName('prixAPayer')[0];
     var price = parseFloat(priceElement.innerText.replace('€', '')) * 100;
-    /*stripeHandler.open({
+    stripeHandler.open({
         amount: price
-    });*/
+    });
 
-    window.alert(price);
+    //window.alert(price);
 }
