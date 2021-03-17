@@ -53,8 +53,8 @@ app.post("/result", function(req, res)
 app.post('/achat', function(error, req, res)
 {
     console.log(error);
-    console.log(req);
-    console.log(res);
+    //console.log(req);
+    //console.log(res);
     /*
         if (error) {
           res.status(500).end();
