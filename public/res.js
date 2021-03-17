@@ -22,7 +22,7 @@ var stripeHandler = StripeCheckout.configure({
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify({
+            body: JSON({
                 stripeTokenId: token.id,
                 price: price
             })
