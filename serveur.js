@@ -1,19 +1,20 @@
+const port = process.env.PORT || 3000;
+const stripeSecretKey = "sk_test_51IW1AdCvIj2XouBnkV7AYb1BHGtAYtO6lQltPWm8gaAZzqfDUVULZ91NGjkJBvaKPomI0tXbdNwKEj6M5rihKasj00uTxSgumB"
+const stripePublicKey = "pk_test_51IW1AdCvIj2XouBnBWDHdwfwwbaATovpnkLsZ2oqyHwfPPz9G3zDQONOmGN3nHv59Xo2UQpiQ5EHX5gzU5dFNTo800o0csnsKu"
+
+
+const express = require('express')
+const app = express();
+
 const { request } = require('http');
-var soap = require('soap');
-var app = require('express')();
+const soap = require('soap');
+const stripe = require("stripe")(stripeSecretKey);
 
-var ejs = require('ejs');
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
 
-var api = require("request");
-const { Console } = require('console');
+app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)});
 
-let port = process.env.PORT || 3000;
-
-app.listen( port , function()
-{
-    console.log(`serveur lancé sur le port :${port}`)
-}
-);
 
 
 
@@ -37,67 +38,20 @@ app.post("/result", function(req, res)
         console.log("Client:" + client);
         client.calculCoutLivraison(args, function (err, result, raw) {
             console.log(result);
-            res.render("res", {prix: result.prixLivraison});
+            res.render("res",
+             {
+                 stripePublicKey : stripePublicKey,
+                 prix: result.prixLivraison
+             });
         });
     });
 });
 
 
 
-app.post("/payez", function(req, res)
-{
-    console.log("paiment du client en cours...");
-    api.post(`https://restapimf.herokuapp.com/paiment`, 
-    {
-        form: 
-        {
-            carteBleue : req.body.cb,
-            prix : req.body.prix
-        }
-    }, function(error, response, body)
-    {
-        if (error)
-        {
-            console.log(error);
-            res.send(error);
-        }
-        
-        if (response.statusCode == 200)
-        {
-            paimentacc = JSON.parse(body);
-            res.render("payment_accepte", {message : paimentacc.message});
-            console.log(paimentacc);
-        }
-        else if ( response.statusCode == 400)
-        {
-            res.send("ERROR 400");
-            console.log(body);
-        }
-    }
-    );
 
-    console.log("paiment terminé!");
+/*app.post("/payez", function(req,res)
+{
+
 });
-
-/* api rest
-app.post("/paiment", function(req, res)
-{
-    if (req.body.carteBleue)
-    {
-        res.status(200).send(
-            {
-                status : 200,
-                message : "vous avez payé " + req.body.prix + "€"
-            }
-        );
-    }
-    else
-    {
-        res.status(400).send(
-            {
-                status : 400,
-                message : "la carte bleue n'existe pas ou est invalide"
-            }
-        );
-    }
-});*/
+*/

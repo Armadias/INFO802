@@ -2,16 +2,19 @@
 <html>
     <head>
         <title>Client soap rest graphql</title>
+        <script src="https://checkout.stripe.com/checkout.js" defer></script>
+
+        <script>
+            var stripePublicKey = '<%= stripePublicKey %>'
+        </script>
+        <script src="res.js" defer></script>
         <meta charset="UTF-8">
     </head>
 
     <body>
 
-        <p> vous devez payer <%= prix %> </p>
-        <form action="/payez" method="post">
-            <input type="text" id ="00" name="cb" placeholder="votre carte bleue ici">
-            <button type="submit" name="prix" id="submit" value="<%= prix %>">payez </button>
-        </form>
-
+        <p> vous devez payer:</p>
+        <p class="prixAPayer"><%= prix %>€</p>
+            <button class="button_buy" type="button">Acheter</button>
     </body>
 </html> 
