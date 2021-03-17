@@ -53,7 +53,8 @@ app.post("/result", function(req, res)
 app.post('/achat', function(req, res)
 {
     console.log(`req body : ${req.body.price}`)
-    console.log(`res body : ${res.body}`)
+    console.log(`req body : ${req.body.stripeTokenId}`)
+    console.log(`res body : ${res}`)
     /*
         if (error) {
           res.status(500).end();
