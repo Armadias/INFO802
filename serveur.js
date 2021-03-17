@@ -2,7 +2,7 @@ const port = process.env.PORT || 3000;
 const stripeSecretKey = "sk_test_51IW1AdCvIj2XouBnkV7AYb1BHGtAYtO6lQltPWm8gaAZzqfDUVULZ91NGjkJBvaKPomI0tXbdNwKEj6M5rihKasj00uTxSgumB"
 const stripePublicKey = "pk_test_51IW1AdCvIj2XouBnBWDHdwfwwbaATovpnkLsZ2oqyHwfPPz9G3zDQONOmGN3nHv59Xo2UQpiQ5EHX5gzU5dFNTo800o0csnsKu"
 
-
+const bodyParser = require('body-parser')
 const express = require('express')
 const app = express();
 
@@ -15,8 +15,8 @@ app.use(express.static('public'));
 
 app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)});
 
-
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(require("express").urlencoded());
 
