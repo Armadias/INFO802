@@ -46,6 +46,7 @@ app.post("/result", function(req, res)
 
 app.post("/payez", function(req, res)
 {
+    console.log("paiment du client en cours...");
     api.post(`https://restapimf.herokuapp.com/paiment`, 
     {
         form: 
@@ -74,6 +75,8 @@ app.post("/payez", function(req, res)
         }
     }
     );
+
+    console.log("paiment terminé!");
 });
 
 /* api rest
