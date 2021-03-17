@@ -31,7 +31,17 @@ var stripeHandler = StripeCheckout.configure({
 
         console.log(envoi);
 
-        fetch('/achat', envoi
+        fetch('/achat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                stripeTokenId: token.id,
+                price: price
+            })
+        }
         ).then(function(res) {
             return res.json()
         }).then(function(data) {

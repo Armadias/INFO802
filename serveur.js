@@ -57,10 +57,10 @@ app.post('/achat', function(req, res)
 
         if (req.body == null) {
           res.status(500).end();
+          console.log("erreur");
         } else {
-
           stripe.charges.create({
-            amount: req.body.prix,
+            amount: req.body.price,
             source: req.body.stripeTokenId,
             currency: 'eur'
           }).then(function() {
