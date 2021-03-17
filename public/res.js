@@ -14,6 +14,8 @@ var stripeHandler = StripeCheckout.configure({
         var priceElement = document.getElementsByClassName('prixAPayer')[0];
         var price = parseFloat(priceElement.innerText.replace('€', '')) * 100;
 
+        console.log(price);
+        console.log("TOKENID" + token.id);
         fetch('/achat', {
             method: 'POST',
             headers: {
@@ -24,14 +26,14 @@ var stripeHandler = StripeCheckout.configure({
                 stripeTokenId: token.id,
                 price: price
             })
-        }).then(function(res) {
+        })/*.then(function(res) {
             return res.json()
         }).then(function(data) {
             alert(data.message)
             var priceElement = document.getElementsByClassName('prixAPayer')[0].innerText = "Achat Terminé, merci de votre confiance!";
         }).catch(function(error) {
             console.error(error)
-        })
+        })*/
     }
 });
 
