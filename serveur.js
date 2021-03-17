@@ -52,21 +52,17 @@ app.post("/result", function(req, res)
 
 app.post('/achat', function(req, res)
 {
-    console.log("ACHAT APELE");
     console.log(`req body : ${JSON.stringify(req.body)}`);
 
 
-    /*
-        if (error) {
+        if (req.body == null) {
           res.status(500).end();
         } else {
 
-          var prix = req.body.prix;
-    
           stripe.charges.create({
-            amount: total,
+            amount: req.body.prix,
             source: req.body.stripeTokenId,
-            currency: 'usd'
+            currency: 'eur'
           }).then(function() {
             console.log('Charge Successful')
             res.json({ message: 'Successfully purchased items' })
@@ -74,5 +70,5 @@ app.post('/achat', function(req, res)
             console.log('Charge Fail');
             res.status(500).end()
           });
-        }*/
+        }
 });

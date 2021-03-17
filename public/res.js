@@ -31,16 +31,15 @@ var stripeHandler = StripeCheckout.configure({
 
         console.log(envoi);
 
-        fetch('/achat', envoi);
-        
-        /*.then(function(res) {
+        fetch('/achat', envoi
+        ).then(function(res) {
             return res.json()
         }).then(function(data) {
-            alert(data.message)
             var priceElement = document.getElementsByClassName('prixAPayer')[0].innerText = "Achat Terminé, merci de votre confiance!";
+            alert(data.message + priceElement)
         }).catch(function(error) {
             console.error(error)
-        })*/
+        })
     }
 });
 
