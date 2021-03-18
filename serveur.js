@@ -9,6 +9,8 @@ const app = express();
 const soap = require('soap');
 const stripe = require("stripe")(stripeSecretKey);
 
+const fetch = require('node-fetch');
+
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
@@ -19,8 +21,10 @@ app.use(require("express").urlencoded());
 app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)});
 
 app.get('/',function(req,res){
-    res.render("client");
+    //res.render("client");
     console.log("client rendered!");
+
+    //////////FEEEEEEEEEEEEEEEEEEEEEEETCH
     fetch("https://info802follietmartin.herokuapp.com/json?query={objects{nom, type, prix, quantites}}", 
   {
     method: 'GET',
@@ -28,10 +32,12 @@ app.get('/',function(req,res){
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     }
-  }).then(function(res)
-  {
-    console.log(res);
-  });
+  }).then(resultat => resultat.json())
+  .then(function(json){
+    console.log(JSON.stringify(json))
+    res.render("client", {json : json.data})
+  }
+  );
 });
 
 // appel Service Soap
@@ -42,7 +48,6 @@ app.post("/result", function(req, res)
     var args = { poids: req.body.distance, distance: req.body.quantites };
 
     soap.createClient(url, function (err, client) {
-        console.log("Client:" + client);
         client.calculCoutLivraison(args, function (err, result, raw) {
             console.log(result);
             res.render("res",

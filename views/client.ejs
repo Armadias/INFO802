@@ -16,5 +16,13 @@
             </form>
         </div>
 
+        <% json.objects.forEach(objects => { %>
+            <div>
+                <h3><%= objects.nom %></h3>
+                J'en veux <input type="number" id="qte" name="quantity" min="0" value="0" max="<%= objects.quantites %>" placeholder="0">
+    
+            </div>
+        <%}) %>
+
     </body>
 </html> 
