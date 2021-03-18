@@ -12,7 +12,7 @@
         <div>
             <form action="/result" method="post">
                 <ul> patates </ul>
-                <ul> <input type="number" id="00" name="quantites" placeholder="quantites"> </ul>
+                <ul> <input type="number" id="00" name="prix" placeholder="prix"> </ul>
                 <ul> <input type="number" id="01" name="distance" placeholder="distance"> </ul>
                 <ul> <input type="submit" id="submit"> </ul>
             </form>
@@ -23,11 +23,26 @@
                 <span class="object_name"><%= object.nom %></span>
                 <img class="object_image" src="images/<%= object.image %>">
                 <div class="object_pb">
-                    <span class="=object_price"><%= object.prix %>€</span>
+                    <span class="object_price"><%= object.prix %>€</span>
                     <button class="object_ajout" type="button">ajouter aux panier</button>
                 </div>
             </div>
         <%}) %>
+
+        <section class="cart_Container">
+            <h2 class="section_header">PANIER</h2>
+            <div class="row">
+                <span class="cart_object">OBJET</span>
+                <span class="cart_price">PRIX</span>
+                <span class="cart_quantity">QUANTITÉ</span>
+            </div>
+            <div class="cart_object">
+            </div>
+            <div class="cart_total">
+                <strong class="cart_total_name"> Total sans frais de livraison</strong>
+                <span class="cart_total_price">0€</span>
+            </div>
+        </section>
 
     </body>
 </html> 
