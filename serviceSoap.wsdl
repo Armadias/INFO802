@@ -7,8 +7,6 @@ xmlns:intf="https://soapserviceinfo802mf.herokuapp.com/wsdl"
 xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
 xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
 xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<!--WSDL created by Apache Axis version: 1.4
-Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="https://soapserviceinfo802mf.herokuapp.com/wsdl" xmlns="http://www.w3.org/2001/XMLSchema">
    <element name="calculCoutLivraison">

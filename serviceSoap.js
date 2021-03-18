@@ -28,7 +28,7 @@ var sSoap =
     }
 };
 
-var xml = require("fs").readFileSync("serveur.wsdl", "utf8");
+var xml = require("fs").readFileSync("serviceSoap.wsdl", "utf8");
 
 let port = process.env.PORT || 3000;
 
