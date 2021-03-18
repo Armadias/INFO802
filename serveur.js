@@ -1,16 +1,33 @@
+//variables globales serveur
 const port = process.env.PORT || 3000;
+
+//variables globales rest api
 const stripeSecretKey = "sk_test_51IW1AdCvIj2XouBnkV7AYb1BHGtAYtO6lQltPWm8gaAZzqfDUVULZ91NGjkJBvaKPomI0tXbdNwKEj6M5rihKasj00uTxSgumB"
 const stripePublicKey = "pk_test_51IW1AdCvIj2XouBnBWDHdwfwwbaATovpnkLsZ2oqyHwfPPz9G3zDQONOmGN3nHv59Xo2UQpiQ5EHX5gzU5dFNTo800o0csnsKu"
 
-const { request } = require('http');
-const bodyParser = require('body-parser')
-const express = require('express')
-const app = express();
-const soap = require('soap');
-const stripe = require("stripe")(stripeSecretKey);
+//variables globales graphql
+const server = new ApolloServer({typeDefs, resolvers});
 
+//import serveur général
+const { request } = require('http');
+const app = express();
+const express = require('express');
 const fetch = require('node-fetch');
 
+//import soap
+const soap = require('soap');
+
+//import rest
+const bodyParser = require('body-parser');
+const stripe = require("stripe")(stripeSecretKey);
+
+//import graphql
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const { ApolloServer, gql } = require('apollo-server-express');
+const serviceAccount = require('./graphqlinfo802mf-firebase-adminsdk-1lnu2-f94bbf0c81.json');
+
+//init du serveur pour les 3 services
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
@@ -18,26 +35,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(require("express").urlencoded());
 
+//lancement du serveur
 app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)});
 
 app.get('/',function(req,res){
     //res.render("client");
     console.log("client rendered!");
 
-    //////////FEEEEEEEEEEEEEEEEEEEEEEETCH
     fetch("https://info802follietmartin.herokuapp.com/json?query={objects{nom, type, prix, quantites}}", 
-  {
+   {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     }
-  }).then(resultat => resultat.json())
-  .then(function(json){
-    console.log(JSON.stringify(json))
-    res.render("client", {json : json.data})
-  }
-  );
+    })
+    .then(resultat => resultat.json())
+    .then(function(json){
+      console.log(JSON.stringify(json))
+      res.render("client", {json : json.data})
+    });
 });
 
 // appel Service Soap
@@ -61,7 +78,6 @@ app.post("/result", function(req, res)
 
 
 //Service Rest api avec stripe
-
 app.post('/achat', function(req, res)
 {
     console.log(`req body : ${JSON.stringify(req.body)}`);
@@ -87,13 +103,6 @@ app.post('/achat', function(req, res)
 });
 
 //Service Graphql avec firebase
-
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const { ApolloServer, gql } = require('apollo-server-express');
-
-const serviceAccount = require('./graphqlinfo802mf-firebase-adminsdk-1lnu2-f94bbf0c81.json');
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://graphqlinfo802mf-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -128,7 +137,6 @@ const resolvers = {
   },
 };
 
-const server = new ApolloServer({typeDefs, resolvers});
 
 server.applyMiddleware({ app, path: "/json", cors: true});
 
