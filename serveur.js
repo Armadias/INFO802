@@ -69,3 +69,51 @@ app.post('/achat', function(req, res)
           });
         }
 });
+
+//Service Graphql avec firebase
+
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+const { ApolloServer, gql } = require('apollo-server-express');
+
+const serviceAccount = require('./graphqlinfo802mf-firebase-adminsdk-1lnu2-f94bbf0c81.json');
+
+admin.initializeApp({
+  credential: admin.dredential.cert(serviceAccount),
+  databaseUrl: "https://graphqlinfo802mf-default-rtdb.europe-west1.firebasedatabase.app"
+});
+
+const typeDefs = gql`
+  type Objects {
+    type: String
+    nom: String
+    prix: String
+    quantites: String
+  }
+  
+  type Query{
+    objects: [Objects]
+  }
+`
+
+const resolvers = {
+  Query: {
+    objects: () => {
+      return admin
+      .database()
+      .ref("objects")
+      .once("value")
+      .then(snap => snap
+      .val())
+      .then(val => Object
+        .keys(val)
+        .map (key => val[key]));
+    },
+  },
+};
+
+const server = new ApolloServer({typeDefs, resolvers});
+
+server.applyMiddleware({ app, path: "/json", cors: true});
+
+exportsgraphql = functions.https.onRequest(app);
