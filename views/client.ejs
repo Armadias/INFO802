@@ -18,10 +18,14 @@
             </form>
         </div>
 
-        <% json.objects.forEach(objects => { %>
-            <div class="object" data-item-id="<%= objects.nom %>">
-                <span class="object_name"><%= objects.nom %></span>
-                <img class="object_image" src="images/<%= objects.image %>">
+        <% json.objects.forEach(object => { %>
+            <div class="object" data-item-id="<%= object.nom %>">
+                <span class="object_name"><%= object.nom %></span>
+                <img class="object_image" src="images/<%= object.image %>">
+                <div class="object_pb">
+                    <span class="=object_price"><%= object.prix %>€</span>
+                    <button class="object_ajout" type="button">ajouter aux panier</button>
+                </div>
             </div>
         <%}) %>
 

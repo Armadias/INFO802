@@ -50,7 +50,6 @@ app.get('/',function(req,res){
   })
   .then(resultat => resultat.json())
   .then(function(json){
-    console.log(JSON.stringify(json));
     res.render("client", {json : json.data})
   });
 });
@@ -60,7 +59,7 @@ app.post("/result", function(req, res)
 {
   var url = 'https://soapserviceinfo802mf.herokuapp.com/wsdl?wsdl';
   console.log(`url du service soap appelé: ${url}`);
-  var args = { poids: req.body.distance, distance: req.body.quantites };
+  var args = { prix: req.body.prix, distance: req.body.distance };
   
   soap.createClient(url, function (err, client) {
     client.calculCoutLivraison(args, function (err, result, raw) {
