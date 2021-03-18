@@ -3,6 +3,8 @@
     <head>
         <title>Client soap rest graphql</title>
         <meta charset="UTF-8">
+
+        <script src="client.js" defer></script>
     </head>
 
     <body>
@@ -17,10 +19,9 @@
         </div>
 
         <% json.objects.forEach(objects => { %>
-            <div>
-                <h3><%= objects.nom %></h3>
-                J'en veux <input type="number" id="qte" name="quantity" min="0" value="0" max="<%= objects.quantites %>" placeholder="0">
-    
+            <div class="object" data-item-id="<%= objects.nom %>">
+                <span class="object_name"><%= objects.nom %></span>
+                <img class="object_image" src="images/<%= objects.image %>">
             </div>
         <%}) %>
 
