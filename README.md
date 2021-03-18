@@ -5,6 +5,4 @@ https://info802follietmartin.herokuapp.com/
 
 # A FAIRE!!!!!!!!!!!!!!!!!
 
-SERVEUR SOCKET POUR LE SOAP 
-
 graphdb
