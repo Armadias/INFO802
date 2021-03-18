@@ -14,7 +14,7 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <element name="calculCoutLivraison">
     <complexType>
      <sequence>
-      <element name="poids" type="xsd:int"/>
+      <element name="prix" type="xsd:int"/>
       <element name="distance" type="xsd:int"/>
      </sequence>
     </complexType>

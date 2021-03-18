@@ -11,16 +11,14 @@ var sSoap =
             
             calculCoutLivraison: function (args)
             {
-                let prixParKg = 1;
                 let prixParKm = 2;
                 
-                let poids = args.poids || 0;
+                let prixTmp = args.prix || 0;
                 let distance = args.distance || 0;
                 
-                let prixPoids = prixParKg * poids;
                 let prixKm = prixParKm * distance;
                 
-                let prix = (prixPoids * 0.5) + (prixKm * 0.9);
+                let prix = prixTmp + (prixKm * 0.9);
                 
                 return {
                     prixLivraison: prix
