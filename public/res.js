@@ -7,10 +7,9 @@ function start()
 
 var stripeHandler = StripeCheckout.configure({
     key: stripePublicKey,
-    locale: 'en',
+    locale: 'fr',
+    currency: 'eur',
     token: function(token) {
-        console.log(token);
-
         var priceElement = document.getElementsByClassName('prixAPayer')[0];
         var price = parseFloat(priceElement.innerText.replace('€', '')) * 100;
 

@@ -2,11 +2,10 @@ const port = process.env.PORT || 3000;
 const stripeSecretKey = "sk_test_51IW1AdCvIj2XouBnkV7AYb1BHGtAYtO6lQltPWm8gaAZzqfDUVULZ91NGjkJBvaKPomI0tXbdNwKEj6M5rihKasj00uTxSgumB"
 const stripePublicKey = "pk_test_51IW1AdCvIj2XouBnBWDHdwfwwbaATovpnkLsZ2oqyHwfPPz9G3zDQONOmGN3nHv59Xo2UQpiQ5EHX5gzU5dFNTo800o0csnsKu"
 
+const { request } = require('http');
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express();
-
-const { request } = require('http');
 const soap = require('soap');
 const stripe = require("stripe")(stripeSecretKey);
 
@@ -66,8 +65,9 @@ app.post('/achat', function(req, res)
           }).then(function() {
             console.log('Charge Successful')
             res.json({ message: 'Successfully purchased items' })
+            res.status(200).end()
           }).catch(function() {
-            console.log('Charge Fail');
+            console.error('Charge Fail');
             res.status(500).end()
           });
         }
