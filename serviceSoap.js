@@ -13,7 +13,7 @@ var sSoap =
             {
                 let prixParKm = 2;
                 
-                let prixTmp = args.prix || 0;
+                let prixTmp = args.price || 0;
                 let distance = args.distance || 0;
                 
                 let prixKm = prixParKm * distance;
