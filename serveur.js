@@ -10,23 +10,20 @@ const soap = require('soap');
 const stripe = require("stripe")(stripeSecretKey);
 
 app.set('view engine', 'ejs');
+
 app.use(express.static('public'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(require("express").urlencoded());
 
 app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)});
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.use(require("express").urlencoded());
-
-app.set("view engine", "ejs");
-
 app.get('/',function(req,res){
-    //res.sendFile(__dirname + "/aaVue/Client.html");
     res.render("client");
     console.log("client rendered!");
 });
 
+// appel Service Soap
 app.post("/result", function(req, res)
 {
     var url = 'https://soapserviceinfo802mf.herokuapp.com/wsdl?wsdl';
@@ -47,7 +44,7 @@ app.post("/result", function(req, res)
 });
 
 
-
+//Service Rest api avec stripe
 
 app.post('/achat', function(req, res)
 {
