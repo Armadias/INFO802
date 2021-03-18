@@ -2,12 +2,27 @@ start()
 
 function start()
 {
+    var removeCartItemButtons = document.getElementsByClassName('btn_danger');
+    for (var i =0; i < removeCartItemButtons.length; i++)
+    {
+        var button = removeCartItemButtons[i];
+        button.addEventListener('click', removeCartItem);
+    }
+    var quantityInputs = document.getElementsByClassName('cart_quantity_input')
+    for (var i =0; i< quantityInputs.length; i++)
+    {
+        var input = quantityInputs[i];
+        input.addEventListener('click', quantityChanged);
+    }
+
     var addCart = document.getElementsByClassName('object_ajout');
     for (var i = 0; i < addCart.length; i++)
     {
         var button = addCart[i];
         button.addEventListener('click', addToCart);
     }
+
+   // document.getElementsByClassName('see_fees_delivery')[0].addEventListener('click', feeDeliveries);
 }
 
 function addToCart(event)
@@ -31,7 +46,6 @@ function addObjectToCart(title, price, image)
     var cartObject = document.getElementsByClassName('cart_object')[0];
     var cartObjectNames = cartObject.getElementsByClassName('cart_object_name');
 
-    console.log("salut");
     for (var i = 0; i < cartObjectNames.length; i++)
     {
         console.log(cartObjectNames[i].innerText);
@@ -42,7 +56,6 @@ function addObjectToCart(title, price, image)
             return
         }
     }
-    console.log("au revoir");
 
     var cartRowContents = `
         <div class="cart_object cart_column">
@@ -62,13 +75,21 @@ function addObjectToCart(title, price, image)
     row.getElementsByClassName('cart_quantity_input')[0].addEventListener('change', quantityChanged);
 }
 
-function removeCartItem()
-{}
+function removeCartItem(event)
+{
+    var onClick = event.target;
+    onClick.parentElement.parentElement.remove();
+    updateCartTotal();
+}
 
 function quantityChanged(event)
 {
     var input = event.target;
-    
+    if (isNaN(input.value) || input.value <=0 )
+    {
+        input.value = 1;
+    }
+    updateCartTotal();
 }
 
 function updateCartTotal()
@@ -88,4 +109,6 @@ function updateCartTotal()
     }
     total = Math.round(total);
     document.getElementsByClassName("cart_total_price")[0].innerText = total + '€';
+    document.getElementsByClassName("price")[0].value = total;
 }
+

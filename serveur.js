@@ -13,12 +13,12 @@ const { request } = require('http');
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
+const bodyParser = require('body-parser');
 
 //import soap
 const soap = require('soap');
 
 //import rest
-const bodyParser = require('body-parser');
 const stripe = require("stripe")(stripeSecretKey);
 
 //import graphql
@@ -30,8 +30,8 @@ const serviceAccount = require('./graphqlinfo802mf-firebase-adminsdk-1lnu2-f94bb
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(require("express").urlencoded());
 
 //lancement du serveur
@@ -55,15 +55,15 @@ app.get('/',function(req,res){
 });
 
 // appel Service Soap
-app.post("/result", function(req, res)
+app.post("/soap", function(req, res)
 {
   var url = 'https://soapserviceinfo802mf.herokuapp.com/wsdl?wsdl';
   console.log(`url du service soap appelé: ${url}`);
-  var args = { prix: req.body.prix, distance: req.body.distance };
-  
+  var args = { prix: req.body.price, distance: req.body.distance };
+
   soap.createClient(url, function (err, client) {
     client.calculCoutLivraison(args, function (err, result, raw) {
-      console.log(result);
+      console.log(`le prix total: ${result.prixLivraison}`);
       res.render("res",
       {
         stripePublicKey : stripePublicKey,

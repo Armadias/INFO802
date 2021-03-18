@@ -9,15 +9,6 @@
 
     <body>
 
-        <div>
-            <form action="/result" method="post">
-                <ul> patates </ul>
-                <ul> <input type="number" id="00" name="prix" placeholder="prix"> </ul>
-                <ul> <input type="number" id="01" name="distance" placeholder="distance"> </ul>
-                <ul> <input type="submit" id="submit"> </ul>
-            </form>
-        </div>
-
         <% json.objects.forEach(object => { %>
             <div class="object" data-item-id="<%= object.nom %>">
                 <span class="object_name"><%= object.nom %></span>
@@ -42,6 +33,12 @@
                 <strong class="cart_total_name"> Total sans frais de livraison</strong>
                 <span class="cart_total_price">0€</span>
             </div>
+
+            <form action="/soap" method="post">
+                <input class="price" type="hidden" name="price">
+                <input class="distance" type="number" name="distance" placeholder="entrez la distance ici" min="0">
+                <input type="submit" id="submit" value="voir les frais de livraison">
+            </form>
         </section>
 
     </body>
