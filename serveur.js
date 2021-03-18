@@ -79,8 +79,8 @@ const { ApolloServer, gql } = require('apollo-server-express');
 const serviceAccount = require('./graphqlinfo802mf-firebase-adminsdk-1lnu2-f94bbf0c81.json');
 
 admin.initializeApp({
-  credential: admin.dredential.cert(serviceAccount),
-  databaseUrl: "https://graphqlinfo802mf-default-rtdb.europe-west1.firebasedatabase.app"
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://graphqlinfo802mf-default-rtdb.europe-west1.firebasedatabase.app/"
 });
 
 const typeDefs = gql`
@@ -116,4 +116,4 @@ const server = new ApolloServer({typeDefs, resolvers});
 
 server.applyMiddleware({ app, path: "/json", cors: true});
 
-exportsgraphql = functions.https.onRequest(app);
+exports.graphql = functions.https.onRequest(app);
