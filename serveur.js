@@ -21,6 +21,17 @@ app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)
 app.get('/',function(req,res){
     res.render("client");
     console.log("client rendered!");
+    fetch("https://info802follietmartin.herokuapp.com/json?query={objects{nom, type, prix, quantites}}", 
+  {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+  }).then(function(res)
+  {
+    console.log(res);
+  });
 });
 
 // appel Service Soap
@@ -117,3 +128,6 @@ const server = new ApolloServer({typeDefs, resolvers});
 server.applyMiddleware({ app, path: "/json", cors: true});
 
 exports.graphql = functions.https.onRequest(app);
+
+
+
