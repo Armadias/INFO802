@@ -32,6 +32,8 @@ var xml = require("fs").readFileSync("serviceSoap.wsdl", "utf8");
 
 let port = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs');
+
 app.listen( port , function()
 {
     soap.listen(app, '/wsdl', sSoap, xml, function () {
@@ -39,3 +41,8 @@ app.listen( port , function()
     });
 }
 );
+
+app.get("/", function(req,res)
+{
+    res.render("index");
+})
