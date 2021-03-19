@@ -63,7 +63,7 @@ app.post("/soap", function(req, res)
   soap.createClient(url, function (err, client) {
     client.calculCoutLivraison(args, function (err, result, raw) {
       console.log(`le prix total: ${result.prixLivraison}`);
-      res.render("res",
+      res.render("pagePaiment",
       {
         stripePublicKey : stripePublicKey,
         prix: result.prixLivraison
@@ -89,7 +89,7 @@ app.post('/achat', function(req, res)
       currency: 'eur'
     }).then(function() {
       console.log('Charge Successful')
-      res.json({ message: 'Successfully purchased items' })
+      res.json({ message: 'Achat confirmé!' })
       res.status(200).end()
     }).catch(function() {
       console.error('Charge Fail');
