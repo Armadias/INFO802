@@ -30,24 +30,24 @@ function addToCart(event)
 {
     var button = event.target;
     var object = button.parentElement.parentElement;
-    var title = object.getElementsByClassName('object_name')[0].innerText;
+    var name = object.getElementsByClassName('object_name')[0].innerText;
     var price = object.getElementsByClassName('object_price')[0].innerText;
     var image = object.getElementsByClassName('object_image')[0].src;
     var max = parseInt(object.getElementsByClassName('object_quantity')[0].innerText);
         
-    addObjectToCart(title, price, image, max);
+    addObjectToCart(name, price, image, max);
     updateCartTotal();
 }
 
-function addObjectToCart(title, price, image, max)
+function addObjectToCart(name, price, image, max)
 {
     var cartRow = document.createElement('div');
-    cartRow.classList.add('cart_row');
-    cartRow.dataset.itemId = title;
+    cartRow.classList.add('row');
+    cartRow.dataset.itemId = name;
     var cartObjects = document.getElementsByClassName('cart_objects')[0];
     var cartObjectNames = cartObjects.getElementsByClassName('cart_object_name');
     for (var i = 0; i < cartObjectNames.length; i++) {
-        if (cartObjectNames[i].innerText == title) {
+        if (cartObjectNames[i].innerText == name) {
             alert('Cet objet est déjà dans le panier!');
             return;
         }
@@ -55,8 +55,8 @@ function addObjectToCart(title, price, image, max)
     
     var cartRowContents = `
     <div class="cart_object cart_column">
-    <img class="cart_object-image" src="${image}" width="100" height="100">
-    <span class="cart_object_name">${title}</span>
+    <img class="cart_object_image" src="${image}" width="100" height="100">
+    <span class="cart_object_name">${name}</span>
     </div>
     <span class="cart_price cart_column">${price}</span>
     <div class="cart_quantity cart_column">
@@ -89,7 +89,7 @@ function quantityChanged(event)
 function updateCartTotal()
 {
     var cartObjectContainer = document.getElementsByClassName('cart_objects')[0];
-    var cartRow = cartObjectContainer.getElementsByClassName('cart_row');
+    var cartRow = cartObjectContainer.getElementsByClassName('row');
     var total = 0;
     
     for (var i = 0; i < cartRow.length; i++)
