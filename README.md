@@ -1,16 +1,23 @@
-# INFO803
-le tp d'info 803, contenant le rest, le soap et le graphdb
+# TP INFO803
+    Voici le tp d'info 803, 
+    utilisant le protocole SOAP, une api REST, et une base de donnée graphql. 
 
-https://info802follietmartin.herokuapp.com/
+    Ce projet utilise Heroku pour l'ébergement, Stripe pour l'api rest de paiment et Firebase bour stoquer la base de donnée graphql.
+
+    le service soap et le serveur ont été codé en Node.js, pour plus d'informations sur les dépendances utilisées, consultez le fichier package.json
+
+###### Le lien vers le site du tp:
+    https://info802follietmartin.herokuapp.com/
+
+###### Le lien vers le service SOAP:
+    https://soapserviceinfo802mf.herokuapp.com/
 
 # Attention
 
-ce projet git dispose de deux branches, une branche SERVEUR et une branche SOAP pour que l'hébergeur heroku puisse utiliser deux serveur afin de faire un appel soap hors serveur pricipal.
+    Ce projet git dispose de deux branches:
+    - une branche SERVEUR : un serveur qui s'occupe d'afficher le client, et de faire les requêtes pour les différents services
+    - une branche SOAP: qui est un serveur à part, car tout faire sur le même serveur réduit l'intérêt du service soap, bien qu'il aurait pu être fait dans le même serveur.
+    l'appel soap aurait pu se faire dans le serveur pricipal (celui qui appelle les api rest et graphql) mais cela était étrange...
 
-l'appel soap aurait pu se faire dans le serveur pricipal (celui qui appelle les api rest et graphql) mais cela était étrange...
-
-# A FAIRE!
-
-correction de bug dans client.js
-css à faire
-ajout d'un bouton retour dans res.ejs
+### Auteur
+    Martin Folliet
