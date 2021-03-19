@@ -1,14 +1,18 @@
+const port = process.env.PORT || 3000;
+
 const { request } = require('http');
-var soap = require('soap');
-var app = require('express')();
+const soap = require('soap');
+const app = require('express')();
 
 var sSoap = 
 {
+    //nom du service
     servicesCoutLivraison: 
     {
+        //nom du port
         prixLivraison: 
         {
-            
+            //nom de la fonction
             calculCoutLivraison: function (args)
             {
                 let prixParKm = 2;
@@ -28,16 +32,17 @@ var sSoap =
     }
 };
 
+//récupération du fichier wsdl
 var xml = require("fs").readFileSync("serviceSoap.wsdl", "utf8");
 
-let port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 
 app.listen( port , function()
 {
+    //mise à l'écoute du service soap pour une requête future
     soap.listen(app, '/wsdl', sSoap, xml, function () {
-        console.log(`Serveur lancé sur le port ${port}`);
+        console.log(`Service SOAP à l'écoute sur le port: ${port}`);
     });
 }
 );
