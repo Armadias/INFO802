@@ -7,7 +7,6 @@ const stripePublicKey = "pk_test_51IW1AdCvIj2XouBnBWDHdwfwwbaATovpnkLsZ2oqyHwfPP
 
 
 //import serveur général
-//const { request } = require('http');
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
@@ -39,6 +38,7 @@ app.listen( port , function(){console.log(`serveur lancé sur le port :${port}`)
 app.get('/',function(req,res){
   console.log("client rendered!");
   
+  //récupération des donnée qraphql avec une requête
   fetch("https://info802follietmartin.herokuapp.com/json?query={objects{nom, type, prix, quantites, image}}", 
   {
     method: 'GET',
@@ -49,6 +49,7 @@ app.get('/',function(req,res){
   })
   .then(resultat => resultat.json())
   .then(function(json){
+    //génération de la vue client, avec les données de la requpête de graphql
     res.render("client", {json : json.data})
   });
 });
@@ -60,9 +61,11 @@ app.post("/soap", function(req, res)
   console.log(`url du service soap appelé: ${url}`);
   var args = { prix: req.body.price, distance: req.body.distance };
 
+  //création du client soap, pour lui envoyer les données de args afin de récupérer le résultat de la requête
   soap.createClient(url, function (err, client) {
     client.calculCoutLivraison(args, function (err, result, raw) {
       console.log(`le prix total: ${result.prixLivraison}`);
+      //génération de la vue de la page de paiment, avec le résultat du service soap, et une clé pour l'api rest
       res.render("pagePaiment",
       {
         stripePublicKey : stripePublicKey,
@@ -76,23 +79,22 @@ app.post("/soap", function(req, res)
 //Service Rest api avec stripe
 app.post('/achat', function(req, res)
 {
-  console.log(`req body : ${JSON.stringify(req.body)}`);
-  
-  
+  console.log('achat en cours...');  
   if (req.body == null) {
     res.status(500).end();
     console.log("erreur");
   } else {
+    //appel de l'api stripe avec les données qu'il demande
     stripe.charges.create({
       amount: req.body.price,
       source: req.body.stripeTokenId,
       currency: 'eur'
     }).then(function() {
-      console.log('Charge Successful')
+      console.log('Achat réussit')
       res.json({ message: 'Achat confirmé!' })
       res.status(200).end()
     }).catch(function() {
-      console.error('Charge Fail');
+      console.error('Achat raté');
       res.status(500).end()
     });
   }
@@ -104,6 +106,7 @@ admin.initializeApp({
   databaseURL: "https://graphqlinfo802mf-default-rtdb.europe-west1.firebasedatabase.app/"
 });
 
+//définition de l'organisation du json graphql
 const typeDefs = gql`
 type Objects {
   type: String

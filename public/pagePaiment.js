@@ -5,6 +5,7 @@ function start()
     document.getElementsByClassName('button_buy')[0].addEventListener('click', purchaseClicked)
 }
 
+//création de la vue qui sera affiché sur le client, puis début de la transaction de la carte bleue
 var stripeHandler = StripeCheckout.configure({
     key: stripePublicKey,
     locale: 'fr',
