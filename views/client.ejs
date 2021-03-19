@@ -10,7 +10,7 @@
     <body>
 
         <% json.objects.forEach(object => { %>
-            <div class="object" data-item-id="<%= object.nom %>">
+            <div class="object" data_object_id="<%= object.nom %>">
                 <span class="object_name"><%= object.nom %></span>
                 <img class="object_image" src="images/<%= object.image %>">
                 <div class="object_pb">
@@ -23,11 +23,11 @@
         <section class="cart_Container">
             <h2 class="section_header">PANIER</h2>
             <div class="row">
-                <span class="cart_object">OBJET</span>
-                <span class="cart_price">PRIX</span>
-                <span class="cart_quantity">QUANTITÉ</span>
+                <span class="cart_object cart_column cart_header">OBJET</span>
+                <span class="cart_price cart_column cart_header">PRIX</span>
+                <span class="cart_quantity cart_column cart_header">QUANTITÉ</span>
             </div>
-            <div class="cart_object">
+            <div class="cart_objects">
             </div>
             <div class="cart_total">
                 <strong class="cart_total_name"> Total sans frais de livraison</strong>

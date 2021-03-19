@@ -2,11 +2,11 @@ start()
 
 function start()
 {
-    var removeCartItemButtons = document.getElementsByClassName('btn_danger');
-    for (var i =0; i < removeCartItemButtons.length; i++)
+    var removeCartObjectButtons = document.getElementsByClassName('btn_danger');
+    for (var i =0; i < removeCartObjectButtons.length; i++)
     {
-        var button = removeCartItemButtons[i];
-        button.addEventListener('click', removeCartItem);
+        var button = removeCartObjectButtons[i];
+        button.addEventListener('click', removeCartObject);
     }
     var quantityInputs = document.getElementsByClassName('cart_quantity_input')
     for (var i =0; i< quantityInputs.length; i++)
@@ -39,43 +39,34 @@ function addToCart(event)
 
 function addObjectToCart(title, price, image)
 {
-    var row = document.createElement('div');
-    row.classList.add('row');
-    row.dataset.itemId = title;
-
-    var cartObject = document.getElementsByClassName('cart_object')[0];
-    var cartObjectNames = cartObject.getElementsByClassName('cart_object_name');
-
-    for (var i = 0; i < cartObjectNames.length; i++)
-    {
-        console.log(cartObjectNames[i].innerText);
-        console.log(title);
-        if (cartObjectNames[i].innerText == title)
-        {
-            alert("cet objet est déjà dans le panier!");
+    var cartRow = document.createElement('div')
+    cartRow.classList.add('cart_row')
+    cartRow.dataset.itemId = title
+    var cartObjects = document.getElementsByClassName('cart_objects')[0]
+    var cartObjectNames = cartObjects.getElementsByClassName('cart_object_name')
+    for (var i = 0; i < cartObjectNames.length; i++) {
+        if (cartObjectNames[i].innerText == title) {
+            alert('Cet objet est déjà dans le panier!')
             return
         }
     }
-
     var cartRowContents = `
         <div class="cart_object cart_column">
-            <img class="cart_object_image" src="${image}" width="100" height="100">
-            <span class="cart_object_title">${title}</span>
+            <img class="cart_object-image" src="${image}" width="100" height="100">
+            <span class="cart_object_name">${title}</span>
         </div>
-        <span class="cart_price">${price}</span>
+        <span class="cart_price cart_column">${price}</span>
         <div class="cart_quantity cart_column">
             <input class="cart_quantity_input" type="number" value="1">
             <button class="btn btn_danger" type="button">SUPPRIMER</button>
-        </div>
-    `
-
-    row.innerHTML = cartRowContents;
-    cartObject.append(row);
-    row.getElementsByClassName('btn_danger')[0].addEventListener('click', removeCartItem);
-    row.getElementsByClassName('cart_quantity_input')[0].addEventListener('change', quantityChanged);
+        </div>`
+    cartRow.innerHTML = cartRowContents
+    cartObjects.append(cartRow)
+    cartRow.getElementsByClassName('btn_danger')[0].addEventListener('click', removeCartObject)
+    cartRow.getElementsByClassName('cart_quantity_input')[0].addEventListener('change', quantityChanged)
 }
 
-function removeCartItem(event)
+function removeCartObject(event)
 {
     var onClick = event.target;
     onClick.parentElement.parentElement.remove();
@@ -94,8 +85,8 @@ function quantityChanged(event)
 
 function updateCartTotal()
 {
-    var cartObjectContainer = document.getElementsByClassName('cart_object')[0];
-    var cartRow = cartObjectContainer.getElementsByClassName('row');
+    var cartObjectContainer = document.getElementsByClassName('cart_objects')[0];
+    var cartRow = cartObjectContainer.getElementsByClassName('cart_row');
     var total = 0;
 
     for (var i = 0; i < cartRow.length; i++)

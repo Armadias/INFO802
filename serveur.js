@@ -13,7 +13,6 @@ const { request } = require('http');
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
-const bodyParser = require('body-parser');
 
 //import soap
 const soap = require('soap');
