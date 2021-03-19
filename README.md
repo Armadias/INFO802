@@ -6,7 +6,7 @@
     Stripe pour l'api rest de paiment,
     Et Firebase bour stoquer la base de donnée graphql.
 
-    le service soap et le serveur ont été codé en Node.js,
+    Le service soap et le serveur ont été codé en Node.js,
     pour plus d'informations sur les dépendances utilisées,
     consultez le fichier package.json.
 
