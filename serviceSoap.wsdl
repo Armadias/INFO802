@@ -12,7 +12,7 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
    <element name="calculCoutLivraison">
     <complexType>
      <sequence>
-      <element name="prix" type="xsd:int"/>
+      <element name="prix" type="xsd:float"/>
       <element name="distance" type="xsd:int"/>
      </sequence>
     </complexType>
