@@ -7,7 +7,7 @@
     Et Firebase bour stoquer la base de donnée graphql.
 
     Le service soap et le serveur ont été codé en Node.js,
-    pour plus d'informations sur les dépendances utilisées,
+    pour plus d'informations sur les modules utilisées,
     consultez le fichier package.json.
 
 ###### Le lien vers le site du tp:
