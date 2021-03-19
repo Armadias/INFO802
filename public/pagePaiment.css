@@ -1,0 +1,119 @@
+
+
+* {
+    box-sizing: border-box;
+    font-family: Raleway;
+    color: #777;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #21505f;
+}
+
+.shop_name
+{
+    color: white;
+    text-align: center;
+    float: center;
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.footer {
+    background-color: #56CCF2;
+    color: white;
+    padding: .25em 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.TP{
+    color: white;
+    float: center;
+    font-weight: 600;
+    font-size: 0.9em;
+    align-items: center;
+}
+
+.PE{
+    color: white;
+    float: center;
+    font-weight: 600;
+    font-size: 0.9em;
+    align-items: center;
+}
+
+.MF{
+    color: white;
+    float : right;
+    text-align: right;
+    font-weight: bold;
+}
+
+div {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.button_buy{
+    display: block;
+    margin: 40px auto 20px auto;
+    font-size: 1.75em;
+    text-align: center;
+    padding: .67em .67em;
+    cursor: pointer;
+
+    color: white;
+    background-color: #56CCF2;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+}
+
+.button_buy:hover, .return:hover{
+    background-color: #2D9CDB;
+}
+
+.price_text, .price_pay {
+    color: rgb(180, 180, 180);
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.price_pay{
+    color:white;
+}
+
+.return {
+    display: block;
+    margin: 20px auto auto auto;
+    font-size: 1.25em;
+    text-align: center;
+    padding: .67em .67em;
+    cursor: pointer;
+
+    color: white;
+    background-color: #56CCF2;
+    border: none;
+    border-radius: .3em;
+    font-weight: bold;
+}
+
+a {
+    color : rgb(180, 180, 180);
+    font-size: 1.25em;
+}
+
+a:hover{
+    color : white;
+}

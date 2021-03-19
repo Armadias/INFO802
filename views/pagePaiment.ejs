@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Client soap rest graphql</title>
+        <title>Humanitus</title>
         <script src="https://checkout.stripe.com/checkout.js" defer></script>
 
         <script>
             var stripePublicKey = '<%= stripePublicKey %>'
         </script>
         <script src="pagePaiment.js" defer></script>
+        <link rel="stylesheet" href="pagePaiment.css" />
 
         <meta charset="UTF-8">
     </head>
 
     <body>
 
-        <p class="price_text"> vous devez payer:
-        <span class="price_pay"><%= prix %>€</span></p>
+        <div>
+            <p class="price_text"> vous devez payer:
+            <span class="price_pay"><%= prix %>€</span></p>
             <button class="button_buy" type="button">Acheter</button>
             <br>
-            <button class="return" type="button" onclick="window.location.href='/'">Retourner au magasin</button>
-            <br>
             <a href="https://stripe.com/docs/testing">Voici la liste de carte bleues pour tester les différentes situations de l'api stripe</a>
+            <br>
+            <button class="return" type="button" onclick="window.location.href='/'">Retourner au magasin</button>
+        </div>
     </body>
+
+    <footer class="footer">
+        <h3 class="shop_name">Humanitus Shop</h3>
+        <p class="PE"> Projet étudiant</p>
+        <span class="TP"> Traveau pratique INFO 802</span>
+        <span class="MF">Martin Folliet </span>
+    </footer>
 </html> 
