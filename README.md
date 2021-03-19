@@ -2,7 +2,7 @@
     Voici le tp d'info 803, 
     utilisant le protocole SOAP, une api REST, et une base de donnée graphql. 
 
-    Ce projet utilise Heroku pour l'ébergement, 
+    Ce projet utilise Heroku pour l'hébergement, 
     Stripe pour l'api rest de paiment,
     Et Firebase bour stoquer la base de donnée graphql.
 
