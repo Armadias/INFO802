@@ -10,7 +10,7 @@ var stripeHandler = StripeCheckout.configure({
     locale: 'fr',
     currency: 'eur',
     token: function(token) {
-        var priceElement = document.getElementsByClassName('prixAPayer')[0];
+        var priceElement = document.getElementsByClassName('price_pay')[0];
         var price = parseFloat(priceElement.innerText.replace('€', '')) * 100;
 
         fetch('/achat', {
@@ -27,7 +27,8 @@ var stripeHandler = StripeCheckout.configure({
         ).then(function(res) {
             return res.json()
         }).then(function(data) {
-            document.getElementsByClassName('prixAPayer')[0].innerText = "Achat Terminé, merci de votre confiance!";
+            document.getElementsByClassName('price_pay')[0].innerText = "Achat Terminé, merci de votre confiance!";
+            document.getElementsByClassName('price_text')[0].innerText ="";
             alert(data.message)
         }).catch(function(error) {
             console.error(error)
@@ -36,7 +37,7 @@ var stripeHandler = StripeCheckout.configure({
 });
 
 function purchaseClicked() {
-    var priceElement = document.getElementsByClassName('prixAPayer')[0];
+    var priceElement = document.getElementsByClassName('price_pay')[0];
     var price = parseFloat(priceElement.innerText.replace('€', '')) * 100;
     stripeHandler.open({
         amount: price

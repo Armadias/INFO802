@@ -10,10 +10,13 @@
     <body>
 
         <% json.objects.forEach(object => { %>
-            <div class="object" data_object_id="<%= object.nom %>">
+            <div class="object" data_object_id="<%= object.name %>">
                 <span class="object_name"><%= object.nom %></span>
                 <img class="object_image" src="images/<%= object.image %>">
                 <div class="object_pb">
+                    <p> quantité disponible
+                        <span class="object_quantity"><%= object.quantites %></span>
+                    </p>
                     <span class="object_price"><%= object.prix %>€</span>
                     <button class="object_ajout" type="button">ajouter aux panier</button>
                 </div>
@@ -37,7 +40,7 @@
             <form action="/soap" method="post">
                 <input class="price" type="hidden" name="price">
                 <input class="distance" type="number" name="distance" placeholder="entrez la distance ici" min="0">
-                <input type="submit" id="submit" value="voir les frais de livraison">
+                <input class ="btn_deliveries" type="submit" id="submit" value="voir les frais de livraison">
             </form>
         </section>
 

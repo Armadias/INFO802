@@ -13,8 +13,11 @@
 
     <body>
 
-        <p> vous devez payer:</p>
-        <p class="prixAPayer"><%= prix %>€</p>
+        <p class="price_text"> vous devez payer:
+        <span class="price_pay"><%= prix %>€</span></p>
             <button class="button_buy" type="button">Acheter</button>
+            <br>
+            <button class="return" type="button" onclick="window.location.href='/'">Retourner au magasin</button>
+            <a href="https://stripe.com/docs/testing">Voici la liste de carte bleues pour tester les différentes situations de l'api stripe</a>
     </body>
 </html> 
