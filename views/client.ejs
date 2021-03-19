@@ -5,25 +5,33 @@
         <meta charset="UTF-8">
 
         <script src="client.js" defer></script>
+        <link rel="stylesheet" href="client.css" />
     </head>
 
     <body>
+        <header>
+            <h1 class="shop_title">Humanitus Shop</h1>
+        </header>
 
-        <% json.objects.forEach(object => { %>
-            <div class="object" data_object_id="<%= object.name %>">
-                <span class="object_name"><%= object.nom %></span>
-                <img class="object_image" src="images/<%= object.image %>">
-                <div class="object_pb">
-                    <p> quantité disponible
-                        <span class="object_quantity"><%= object.quantites %></span>
-                    </p>
-                    <span class="object_price"><%= object.prix %>€</span>
-                    <button class="object_ajout" type="button">ajouter aux panier</button>
+        <section class="shop_section container">
+            <div class="objects">
+            <% json.objects.forEach(object => { %>
+                <div class="object" data_object_id="<%= object.name %>">
+                    <span class="object_name"><%= object.nom %></span>
+                    <img class="object_image" src="images/<%= object.image %>">
+                    <div class="object_pb">
+                        <p class="object_qt_text"> quantité disponible: 
+                            <span class="object_quantity"><%= object.quantites %></span>
+                        </p>
+                        <span class="object_price"><%= object.prix %>€</span>
+                        <button class="object_ajout btn btn_primary" type="button">ajouter aux panier</button>
+                    </div>
                 </div>
+            <%}) %>
             </div>
-        <%}) %>
+        </section>
 
-        <section class="cart_Container">
+        <section class="cart_Container container">
             <h2 class="section_header">PANIER</h2>
             <div class="row">
                 <span class="cart_object cart_column cart_header">OBJET</span>
@@ -40,9 +48,12 @@
             <form action="/soap" method="post">
                 <input class="price" type="hidden" name="price">
                 <input class="distance" type="number" name="distance" placeholder="entrez la distance ici" min="0">
-                <input class ="btn_deliveries" type="submit" id="submit" value="voir les frais de livraison">
+                <input class ="btn_deliveries btn btn_primary" type="submit" id="submit" value="voir les frais de livraison">
             </form>
         </section>
+        <footer class="footer">
+
+        </footer>
 
     </body>
 </html> 

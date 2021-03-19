@@ -27,8 +27,8 @@ var stripeHandler = StripeCheckout.configure({
         ).then(function(res) {
             return res.json()
         }).then(function(data) {
-            document.getElementsByClassName('price_pay')[0].innerText = "Achat Terminé, merci de votre confiance!";
-            document.getElementsByClassName('price_text')[0].innerText ="";
+            document.getElementsByClassName('price_text')[0].innerText ="Achat Terminé, merci de votre confiance!";
+            document.getElementsByClassName('button_buy')[0].disabled = true;
             alert(data.message)
         }).catch(function(error) {
             console.error(error)
