@@ -5,11 +5,9 @@ const port = process.env.PORT || 3000;
 const stripeSecretKey = "sk_test_51IW1AdCvIj2XouBnkV7AYb1BHGtAYtO6lQltPWm8gaAZzqfDUVULZ91NGjkJBvaKPomI0tXbdNwKEj6M5rihKasj00uTxSgumB"
 const stripePublicKey = "pk_test_51IW1AdCvIj2XouBnBWDHdwfwwbaATovpnkLsZ2oqyHwfPPz9G3zDQONOmGN3nHv59Xo2UQpiQ5EHX5gzU5dFNTo800o0csnsKu"
 
-//variables globales graphql
-const { ApolloServer, gql } = require('apollo-server-express');
 
 //import serveur général
-const { request } = require('http');
+//const { request } = require('http');
 const express = require('express');
 const app = express();
 const fetch = require('node-fetch');
@@ -21,11 +19,13 @@ const soap = require('soap');
 const stripe = require("stripe")(stripeSecretKey);
 
 //import graphql
+const { ApolloServer, gql } = require('apollo-server-express');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const serviceAccount = require('./graphqlinfo802mf-firebase-adminsdk-1lnu2-f94bbf0c81.json');
 
 //init du serveur pour les 3 services
+//-- chargement du module ejs
 app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
