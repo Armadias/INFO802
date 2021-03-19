@@ -58,7 +58,7 @@ function addObjectToCart(name, price, image, max)
     <img class="cart_object_image" src="${image}" width="100" height="100">
     <span class="cart_object_name">${name}</span>
     </div>
-    <span class="cart_price cart_column">${price}</span>
+    <span class="cart_text cart_price cart_column">${price}</span>
     <div class="cart_quantity cart_column">
     <input class="cart_quantity_input" type="number" value="1" min="1" max="${max}">
     <button class="btn btn_danger" type="button">SUPPRIMER</button>
@@ -101,7 +101,7 @@ function updateCartTotal()
         var quantity = quantityElement.value;
         total += (price * quantity);
     }
-    total = Math.round(total);
+    //total = Math.round(total);
     document.getElementsByClassName("cart_total_price")[0].innerText = total + '€';
     document.getElementsByClassName("price")[0].value = total;
     
